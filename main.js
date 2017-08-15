@@ -36,7 +36,7 @@ function domString() {
   for (var i=0; i<planets.length; i++) {
     var newPlanet = "";
     newPlanet = `<div class="planetBox" id="planetBox-${i}">`;
-    newPlanet += `<div class="planetName">`;
+    newPlanet += `<div class="planetName hidden">`;
     newPlanet += `<p>${planets[i].name}</p></div>`;
     newPlanet += `<img class="planetImage" src="${planets[i].url}">`;
     newPlanet += `</div>`;
@@ -53,3 +53,16 @@ function writeToDom(strang) {
 
 getPlanetsButton.addEventListener('mouseenter',function() {domString();})
 
+function showMe(e) {
+  e.target.previousSibling.classList.remove("hidden");
+}
+
+
+document.body.addEventListener('click',function(e){
+//  console.log("click event ", e.target);
+//  console.log("click event ", e.target.parentNode.parentNode.parentNode);
+  if (event.target.className === 'planetImage') {
+    console.log("yaaaaaaaa!");
+    showMe(e);
+  }
+});
