@@ -26,3 +26,27 @@ var planets = [{
   name: 'neptune',
   url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/260px-Neptune_Full.jpg'
 }];
+
+var planetHolderDiv = document.getElementById('planetHolder');
+
+function domString() {
+  var planetString = '';
+  for (var i=0; i<planets.length; i++) {
+    var newPlanet = "";
+    newPlanet = `<div class="planetBox" id="planetBox-${i}">`;
+    newPlanet += `<div class="planetName">`;
+    newPlanet += `<p>${planets[i].name}</p></div>`;
+    newPlanet += `<img class="planetImage" src="${planets[i].url}">`;
+    newPlanet += `</div>`;
+    planetString += newPlanet;
+
+  }
+  writeToDom(planetString);
+}
+
+function writeToDom(strang) {
+  planetHolderDiv.innerHTML = strang;
+
+}
+
+domString();
