@@ -29,16 +29,17 @@ var planets = [{
 
 var planetHolderDiv = document.getElementById('planetHolder');
 var getPlanetsButton = document.getElementById('showButton');
+var inputField = document.getElementById('searchText');
 
 
-function domString() {
+function domString(planetz) {
   var planetString = '';
-  for (var i=0; i<planets.length; i++) {
+  for (var i=0; i<planetz.length; i++) {
     var newPlanet = "";
     newPlanet = `<div class="planetBox" id="planetBox-${i}">`;
     newPlanet += `<div class="planetName hidden">`;
-    newPlanet += `<p>${planets[i].name}</p></div>`;
-    newPlanet += `<img class="planetImage" src="${planets[i].url}">`;
+    newPlanet += `<p>${planetz[i].name}</p></div>`;
+    newPlanet += `<img class="planetImage" src="${planetz[i].url}">`;
     newPlanet += `</div>`;
     planetString += newPlanet;
 
@@ -51,7 +52,7 @@ function writeToDom(strang) {
 
 }
 
-getPlanetsButton.addEventListener('mouseenter',function() {domString();})
+getPlanetsButton.addEventListener('mouseenter',function() {domString(planets);})
 
 function showMe(e) {
   e.target.previousSibling.classList.remove("hidden");
@@ -66,3 +67,21 @@ document.body.addEventListener('click',function(e){
     showMe(e);
   }
 });
+
+
+inputField.addEventListener('keypress', function(e){
+  if(e.key === 'Enter') {
+    var txt = inputField.value;
+    
+    var results = planets.filter(function(thing){
+      console.log("filter thing", thing);
+      return thing.name.indexOf(txt)>-1;  // if number is > -1, return it, otherwise forget it.
+    });   // filter takes a function and copies the array
+//    domString(results);
+    domString(results);
+
+  }
+});
+
+
+
