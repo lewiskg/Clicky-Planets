@@ -30,6 +30,7 @@ var planets = [{
 var planetHolderDiv = document.getElementById('planetHolder');
 var getPlanetsButton = document.getElementById('showButton');
 var inputField = document.getElementById('searchText');
+var getClearButton = document.getElementById('clearButton');
 
 
 function domString(planetz) {
@@ -74,7 +75,7 @@ inputField.addEventListener('keypress', function(e){
     var txt = inputField.value;
     
     var results = planets.filter(function(thing){
-      console.log("filter thing", thing);
+//      console.log("filter thing", thing);
       return thing.name.indexOf(txt)>-1;  // if number is > -1, return it, otherwise forget it.
     });   // filter takes a function and copies the array
 //    domString(results);
@@ -83,5 +84,9 @@ inputField.addEventListener('keypress', function(e){
   }
 });
 
+
+getClearButton.addEventListener('click', function(e){
+  document.getElementById("searchText").value = "";
+})
 
 
